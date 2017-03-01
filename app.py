@@ -38,9 +38,9 @@ def webhook():
 def processRequest(req):
 	with open('result.json') as data_file:
 		data = json.load(data_file)
-	if req.get("metadata").get("intentName")=="name":
-		result=data.get("name")
-		data=json.loads(result)
+	if req["metadata"]["intentName"]=="name":
+		result=data["name"]
+		#data=json.loads(result)
 		res=makeWebhookResult(data)
 		return res
 
@@ -95,7 +95,9 @@ def makeWebhookResult(data):
 
     #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
      #        ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
-     speech= "My name is" + data +",Nice to meet you!"
+    # speech= "My name is" + data +",Nice to meet you!"
+     speech="My name is"+data['name']+ " Nice to meet you!"
+
      print("Response:")
      print(speech)
      return {
@@ -103,7 +105,7 @@ def makeWebhookResult(data):
      "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "SmartResume"
     }
 
 
