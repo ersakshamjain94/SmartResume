@@ -38,11 +38,11 @@ def webhook():
 def processRequest(req):
 	with open('result.json') as data_file:
 		data = json.load(data_file)
-    if req.get("metadata").get("intentName") == "name":
-    	result=data.get("name")
-    	data=json.loads(result)
-    	res=makeWebhookResult(data)
-    	return res
+	if req.get("metadata").get("intentName")=="name":
+		result=data.get("name")
+		data=json.loads(result)
+		res=makeWebhookResult(data)
+		return res
 
 
     #if req.get("result").get("action") != "yahooWeatherForecast":
@@ -96,12 +96,11 @@ def makeWebhookResult(data):
     #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
      #        ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
      speech= "My name is" + data +",Nice to meet you!"
-    print("Response:")
-    print(speech)
-
-    return {
-        "speech": speech,
-        "displayText": speech,
+     print("Response:")
+     print(speech)
+     return {
+     "speech": speech,
+     "displayText": speech,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
