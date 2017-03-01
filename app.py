@@ -36,8 +36,8 @@ def webhook():
 
 
 def processRequest(req):
-	with open('result.json') as data_file:    
-    	data = json.load(data_file)
+	with open('result.json') as data_file:
+		data = json.load(data_file)
     if req.get("metadata").get("intentName") == "name":
     	result=data.get("name")
     	data=json.loads(result)
