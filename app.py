@@ -98,9 +98,10 @@ def makeWebhookResult(data,intent):
     #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
      #        ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
     # speech= "My name is" + data +",Nice to meet you!"
+	speech=""
 	if intent == 'name':
 		speech="My name is "+data['name']+ ", Nice to meet you!"
-	elif intent == 'age':
+	elif intent == 'Age':
 		speech="I am "+data['age']+" years old!"
 	print("Response:")
 	print(speech)
