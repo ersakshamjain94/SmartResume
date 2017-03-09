@@ -40,8 +40,10 @@ def processRequest(req):
 		data = json.load(data_file)
 	if req["result"]["metadata"]["intentName"]=="name":
 		result=data["name"]
+	elif req["result"]["metadata"]["intentName"]=="Age":
+		result=data["age"]
 		#data=json.loads(result)
-		res=makeWebhookResult(data)
+		res=makeWebhookResult(data,req["result"]["metadata"]["intentName"])
 		return res
 
 
@@ -68,7 +70,7 @@ def makeYqlQuery(req):
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
-def makeWebhookResult(data):
+def makeWebhookResult(data,intent):
     #query = data.get('query')
     #if query is None:
      #   return {}
@@ -96,16 +98,18 @@ def makeWebhookResult(data):
     #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
      #        ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
     # speech= "My name is" + data +",Nice to meet you!"
-     speech="My name is"+data['name']+ " Nice to meet you!"
-
-     print("Response:")
-     print(speech)
-     return {
-     "speech": speech,
-     "displayText": speech,
+	if intent == 'name':
+		speech="My name is "+data['name']+ ", Nice to meet you!"
+	elif intent == 'age':
+		speech="I am "+data['age']+" years old!"
+	print("Response:")
+	print(speech)
+	return {
+	"speech": speech,
+	"displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "SmartResume"
+	"source": "SmartResume"
     }
 
 
