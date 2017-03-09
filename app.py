@@ -59,7 +59,6 @@ def processRequest(req):
     #res = makeWebhookResult(data)
     #return res
 
-
 def makeYqlQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
@@ -100,9 +99,9 @@ def makeWebhookResult(data,intent):
     # speech= "My name is" + data +",Nice to meet you!"
 	speech=""
 	if intent == 'name':
-		speech="My name is "+data['name']+ ", Nice to meet you!"
+		speech=speech+"My name is "+data['name']+ ", Nice to meet you!"
 	elif intent == 'Age':
-		speech="I am "+data['age']+" years old!"
+		speech=speech+"I am "+data['age']+" years old!"
 	print("Response:")
 	print(speech)
 	return {
