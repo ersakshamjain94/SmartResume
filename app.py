@@ -43,8 +43,8 @@ def processRequest(req):
 	elif req["result"]["metadata"]["intentName"]=="Age":
 		result=data["age"]
 		#data=json.loads(result)
-		res=makeWebhookResult(data,req["result"]["metadata"]["intentName"])
-		return res
+	res=makeWebhookResult(result,req["result"]["metadata"]["intentName"])
+	return res
 
 
     #if req.get("result").get("action") != "yahooWeatherForecast":
@@ -97,11 +97,11 @@ def makeWebhookResult(data,intent):
     #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
      #        ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
     # speech= "My name is" + data +",Nice to meet you!"
-	speech=""
+	#speech=""
 	if intent == 'name':
-		speech=speech+"My name is "+data['name']+ ", Nice to meet you!"
+		speech="My name is "+data+ ", Nice to meet you!"
 	elif intent == 'Age':
-		speech=speech+"I am "+data['age']+" years old!"
+		speech=speech+"I am "+data+" years old!"
 	print("Response:")
 	print(speech)
 	return {
